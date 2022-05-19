@@ -44,6 +44,27 @@ public class Main {
         checksum |= (bytes[11] &0xff);
         System.out.println("Checksum -->"+ checksum);
 
+        //data chunk 12,13 14 15
+        int type =0;
+        type |= (bytes[12] &0xff);
+        System.out.println("Type"+type);
+
+        boolean reserved = ((bytes[13] &0xff) &0b11100000) >0;
+        System.out.println("Reserves -->"+reserved);
+
+        boolean u = ((bytes[13] &0xff) &0b00010000) >0;
+        System.out.println("U-->"+u);
+
+        boolean b = ((bytes[13] &0xff) &0b00000100) >0;
+        System.out.println("B -->"+b);
+        boolean r = ((bytes[13] &0xff) &0b00000010) >0;
+        System.out.println("R -->"+r);
+
+        int length =0;
+        length |= (bytes[14] &0xff)<<8;
+        length |= (bytes[15] &0xff);
+        System.out.println("Length"+ length);
+
 
 
     }
